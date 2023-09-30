@@ -1,24 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard } from 'react-native';
-import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard } from 'react-native'
+import React, { useState } from 'react'
 
 export default function App() {
 
-  const [nota1, setNota1] = useState('');
-  const [nota2, setNota2] = useState('');
+  const [nota1, setNota1] = useState('')
+  const [nota2, setNota2] = useState('')
   const [media, setMedia] = useState(null)
 
   const handleNota1Change = (nota) => {
-    setNota1(nota);
-  };
+    setNota1(nota)
+  }
 
   const handleNota2Change = (nota) => {
-    setNota2(nota);
-  };
+    setNota2(nota)
+  }
 
   const handleSubmite = () => {
-    const n1 = parseFloat(nota1);
-    const n2 = parseFloat(nota2);
+    const n1 = parseFloat(nota1)
+    const n2 = parseFloat(nota2)
 
     if (isNaN(n1) || isNaN(n2)) {
       setMedia(null)
@@ -112,4 +112,4 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginBottom:20,
   },
-});
+})
