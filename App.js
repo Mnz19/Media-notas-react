@@ -1,31 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { calcularMedia } from './media';
 
 export default function App() {
+  const [nota1, setNota1] = useState(0)
+  const [nota2, setNota2] = useState(0)
+  const [resultado, setResultado] = useState()
+
+  const calcular = () => {
+    const media = calcularMedia(Number(nota1), Number(nota2))
+    setResultado(media)
+  }
+  
   return (
     <View style={styles.container}>
+
       <View style={styles.containerBox}>
         <Text style={styles.containerText}>Média de Notas</Text>
-        <TextInput
-        placeholder='Nota 1'
-        style={styles.input}
-        ></TextInput>
-        <TextInput
-        placeholder='Nota 2'
-        style={styles.input}
-        ></TextInput>
-        <TouchableOpacity 
-        style={styles.button}
-        >
+        <TextInput placeholder='Nota 1' style={styles.input} onChangeText={setNota1}></TextInput>
+        <TextInput placeholder='Nota 2' style={styles.input} onChangeText={setNota2}></TextInput>
+        <TouchableOpacity style={styles.button} onPress={calcular}>
           <Text style={styles.buttonText}>Calcular</Text>
         </TouchableOpacity>
         <StatusBar style="auto" />
       </View>
+
       <View style={styles.containerResult}>
-        <Text 
-        style={styles.resultText}
-        >Média: 9</Text>
+        {
+        resultado == undefined ? 
+        <Text style={styles.resultText}>Esperando notas...</Text> : 
+        <Text style={styles.resultText}>{resultado}</Text>
+        }
       </View>
+
     </View>
   );
 }
